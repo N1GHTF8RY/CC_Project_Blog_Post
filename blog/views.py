@@ -27,7 +27,7 @@ class PostListView(LoginRequiredMixin, ListView):
         # if there is a search query in the URL parameter, then use it to filter the results
         search_query = self.request.GET.get('search', '')
         # using Q for case-insensitive search in a MySQL database 
-        queryset = Post.objects.filter(Q(content lower contains=search_query)).orde r_by('-date_posted')
+        queryset = Post.objects.filter(Q(content_lower_contains=search_query)).order_by('-date_posted')
         return queryset
 
 
@@ -49,7 +49,7 @@ class PostListView(LoginRequiredMixin, ListView):
 	# if there is a search query in the URL parameter, then use it to filter the results
         search_query = self.request.GET.get('search', '') 	# using Q for case-insensitive search in a MySQL database
 	# filtering for posts where the user is the author 	
-        queryset = Post.objects.filter(Q(content lower contains=search_query)).filt er(author_id=self.request.user.id).order_by('-date_posted')
+        queryset = Post.objects.filter(Q(content_lower_contains=search_query)).filter(author_id=self.request.user.id).order_by('-date_posted')
         return queryset     
 class PostDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Post 
