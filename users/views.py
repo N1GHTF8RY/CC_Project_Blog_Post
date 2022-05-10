@@ -22,12 +22,13 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-# adding more context to the default 'LoginView' class-based view class LoginLogout(LoginView):
+# adding more context to the default 'LoginView' class-based view 
+class LoginLogout(LoginView):
 
-def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs) 
-    context.update({ 'message': 'You have logged out!', 'tag': 'success'})
-    return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        context.update({ 'message': 'You have logged out!', 'tag': 'success'})
+        return context
 
 
 # adding a custom logout function 
