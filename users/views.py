@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render 
 from .forms import UserRegisterForm
 from django.contrib.auth import authenticate, login, logout 
@@ -39,4 +40,3 @@ def logout_view(request):
 # calling the 'LoginLogout' that has updated context for the 'LoginView'
     return 
 LoginLogout.as_view(template_name='users/login.html')(request)
-
